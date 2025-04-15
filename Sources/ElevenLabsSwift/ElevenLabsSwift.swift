@@ -617,6 +617,7 @@ public class ElevenLabsSDK {
         public var onConnect: @Sendable (String) -> Void = { _ in }
         public var onDisconnect: @Sendable () -> Void = {}
         public var onMessage: @Sendable (String, Role) -> Void = { _, _ in }
+        public var onMessageAudio: @Sendable ([String: Any]) -> Void = { _ in }
         public var onError: @Sendable (String, Any?) -> Void = { _, _ in }
         public var onStatusChange: @Sendable (Status) -> Void = { _ in }
         public var onModeChange: @Sendable (Mode) -> Void = { _ in }
@@ -938,6 +939,7 @@ public class ElevenLabsSDK {
 
             addAudioBase64Chunk(audioBase64)
             updateMode(.speaking)
+            callbacks.onMessageAudio(json)
         }
 
         private func handlePingEvent(_ json: [String: Any]) {
