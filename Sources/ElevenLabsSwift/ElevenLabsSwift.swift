@@ -951,7 +951,7 @@ public class ElevenLabsSDK {
             sendWebSocketMessage(response)
         }
 
-        private func sendWebSocketMessage(_ message: [String: Any]) {
+        public sendWebSocketMessage(_ message: [String: Any]) {
             guard let data = try? JSONSerialization.data(withJSONObject: message),
                   let string = String(data: data, encoding: .utf8)
             else {
