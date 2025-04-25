@@ -956,12 +956,15 @@ public class ElevenLabsSDK {
                   let string = String(data: data, encoding: .utf8)
             else {
                 callbacks.onError("Failed to encode message", message)
+                print("@@@ sendWebSocketMessage - Failed to encode message \(message)")
                 return
             }
+            print("@@@ sendWebSocketMessage - \(string)")
 
             connection.socket.send(.string(string)) { [weak self] error in
                 if let error = error {
                     self?.logger.error("Failed to send WebSocket message: \(error.localizedDescription)")
+                    print("@@@ sendWebSocketMessage - Failed send WebSocket message \(error.localizedDescription)")
                     self?.callbacks.onError("Failed to send WebSocket message", error)
                 }
             }
